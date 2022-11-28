@@ -756,8 +756,8 @@ workflow scenic {
 
     SCENIC( 
         Channel.of( tuple(params.global.project_name, file(params.tools.scenic.filteredLoom))) 
-    )
-
+    ) 
+        
     if(params.utils?.publish) {
         PUBLISH_SCENIC(
             SCENIC.out,
@@ -1304,3 +1304,4 @@ workflow filter_and_annotate_and_clean {
     )
 
 }
+

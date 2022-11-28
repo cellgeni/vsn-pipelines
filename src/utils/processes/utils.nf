@@ -154,7 +154,7 @@ def getConverterContainer = { params, type ->
         case "cistopic":
             return params.tools.cistopic.container
         case "r":
-            return "vibsinglecellnf/scconverter:0.0.1"
+            return params.tools.scconverter.container
         break;
         case "python":
             return params.tools.scanpy.container
@@ -253,6 +253,7 @@ process SC__FILE_CONVERTER {
             inputDataType,
             outputDataType
         )
+       
         outputExtension = getOutputExtension(outputDataType)
 
         switch(converterToUse) {
@@ -276,6 +277,7 @@ process SC__FILE_CONVERTER {
                     f
                 )
                 break;
+
             case "python":
                 runPythonConverter(
                     processParams,
@@ -503,7 +505,7 @@ process SIMPLE_PUBLISH {
 
 process COMPRESS_HDF5() {
 
-	container "vibsinglecellnf/hdf5:1.10.5-r2"
+	container = params.tools.compresshdf5.container
 	publishDir "${params.global.outdir}/data/intermediate", mode: 'symlink', overwrite: true
     label 'compute_resources__mem'
 
