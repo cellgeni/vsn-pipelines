@@ -95,7 +95,6 @@ except IOError:
 
 if args.flavor == "seurat":
     max_disp = np.inf if args.max_disp is None else args.max_disp
-    print(adata)
     sc.pp.highly_variable_genes(
         adata,
         min_mean=args.min_mean,
